@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -20,6 +21,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "DataPapus",
   description: "Aplicacion para el analisis de datos de cvs que los despliega en graficas",
+  icons: {
+    icon: "../public/Icono.svg",
+  },
 };
 
 export default function RootLayout({
@@ -32,15 +36,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SidebarProvider>
-          <AppSidebar />
-          <SidebarInset>
-            <main className="p-4">
-              <SidebarTrigger />
-              {children}
-            </main>
-          </SidebarInset>
-        </SidebarProvider>
+        <TooltipProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <main className="p-4">
+                <SidebarTrigger />
+                {children}
+              </main>
+            </SidebarInset>
+          </SidebarProvider>
+        </TooltipProvider>
       </body>
     </html>
   );
