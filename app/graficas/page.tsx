@@ -1,5 +1,12 @@
+import { AppHeader } from "@/components/app-header";
+
 export default function Graficas() {
     return (
-        <h1>graficas</h1>
+        <>
+            <AppHeader title="Graficas" />
+            <div className="p-4">
+                <h1>Visualización de Datos</h1>
+            </div>
+        </>
     )
 }

@@ -44,21 +44,7 @@ export default async function RootLayout({
           <SidebarProvider defaultOpen={defaultOpen}>
             <AppSidebar />
             <SidebarInset>
-              <header className="flex h-16 shrink-0 items-center gap-2 px-4 border-b border-sidebar-border/50">
-                <div className="flex items-center gap-2">
-                  <SidebarTrigger className="-ml-12" />
-                  <div className="h-4 w-[1px] bg-sidebar-border mx-2" />
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium">Dashboard</span>
-                  </div>
-                </div>
-                <div className="ml-auto flex items-center gap-2 text-xs text-muted-foreground mr-4">
-                  <span>Home</span>
-                  <span>/</span>
-                  <span className="text-foreground">Dashboard</span>
-                </div>
-              </header>
-              <main className="p-4">
+              <main>
                 {children}
               </main>
             </SidebarInset>

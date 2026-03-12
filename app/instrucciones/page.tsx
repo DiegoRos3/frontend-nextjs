@@ -1,7 +1,12 @@
+import { AppHeader } from "@/components/app-header";
+
 export default function Instrucciones() {
     return (
-        <div>
-            <h1>INSTRUCCIONES</h1>
-        </div>
+        <>
+            <AppHeader title="Instrucciones" />
+            <div className="p-4">
+                <h1>Guía de Uso</h1>
+            </div>
+        </>
     )
 }
