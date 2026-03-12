@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Home, BarChart2, BookText } from "lucide-react"
 import {
     Sidebar,
@@ -13,12 +14,12 @@ import {
 
 export function AppSidebar() {
     return (
-        <Sidebar>
-            <SidebarHeader className="flex flex-row items-center gap-3 p-4">
+        <Sidebar collapsible="icon">
+            <SidebarHeader className="flex flex-row items-center gap-3 p-4 transition-all group-data-[collapsible=icon]:p-2">
                 <div className="flex aspect-square size-10 items-center justify-center rounded-lg text-sidebar-primary-foreground">
                     <Image src="/Icono.svg" alt="Logo" width={50} height={50} />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col group-data-[collapsible=icon]:hidden">
                     <span className="truncate font-bold text-base">DataPapus</span>
                     <span className="truncate text-xs text-muted-foreground">Analizador de Datos</span>
                 </div>
@@ -28,26 +29,26 @@ export function AppSidebar() {
                     <SidebarMenu>
                         <SidebarMenuItem>
                             <SidebarMenuButton asChild tooltip="Home">
-                                <a href="/">
+                                <Link href="/">
                                     <Home className="size-5" />
                                     <span>Pagina principal</span>
-                                </a>
+                                </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                         <SidebarMenuItem>
                             <SidebarMenuButton asChild tooltip="Graficas">
-                                <a href="/graficas">
+                                <Link href="/graficas">
                                     <BarChart2 className="size-5" />
                                     <span>Graficas</span>
-                                </a>
+                                </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                         <SidebarMenuItem>
                             <SidebarMenuButton asChild tooltip="Instrucciones">
-                                <a href="/instrucciones">
+                                <Link href="/instrucciones">
                                     <BookText className="size-5" />
                                     <span>Instrucciones</span>
-                                </a>
+                                </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                     </SidebarMenu>
