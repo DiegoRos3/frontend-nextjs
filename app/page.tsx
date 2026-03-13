@@ -11,10 +11,9 @@ export default function Home() {
             Sube tus datos para analizar
           </h1>
           <p className="text-xl text-muted-foreground mx-auto max-w-2xl">
-            Soporta archivos CSV y Excel. Simplemente arrastra y suelta para generar gráficas instantáneas.
+            Soporta archivos Excel. Simplemente arrastra y suelta para generar gráficas instantáneas.
           </p>
         </div>
-        
         <FileUpload />
       </div>
     </>
