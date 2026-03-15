@@ -5,6 +5,7 @@ import { useDropzone } from "react-dropzone"
 import { Upload, X, FileText, CheckCircle2, Loader2, Send } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import procesarService from "@/services/procesar.service"
 
 interface FileWithStatus {
     file: File
@@ -13,7 +14,7 @@ interface FileWithStatus {
 
 export function FileUpload() {
     const [files, setFiles] = useState<FileWithStatus[]>([])
-    const [isProcessing, setIsProcessing] = useState(false)
+    const [isProcessing, setIsProcessing] = useState<boolean>(false)
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const newFiles = acceptedFiles.map((file) => ({
@@ -34,33 +35,26 @@ export function FileUpload() {
 
         const updatedFiles = [...files]
 
-        for (let i = 0; i < updatedFiles.length; i++) {
-            if (updatedFiles[i].status === "success") continue
-
+        if (updatedFiles[0].status === "idle" || updatedFiles[0].status === "error") {
             try {
-                updatedFiles[i].status = "uploading"
+                updatedFiles[0].status = "uploading"
                 setFiles([...updatedFiles])
 
                 const formData = new FormData()
-                formData.append("file", updatedFiles[i].file)
+                formData.append("file", updatedFiles[0].file)
 
-                const response = await fetch("http://localhost:8000/procesar/", {
-                    method: "POST",
-                    body: formData,
-                })
+                const data = await procesarService(formData)
 
-                if (!response.ok) throw new Error("Error en la carga")
+                console.log("respuesta del servidor:", data)
 
-                const data = await response.json()
-                console.log("Respuesta del servidor:", data)
-
-                updatedFiles[i].status = "success"
+                updatedFiles[0].status = "success"
             } catch (error) {
                 console.error("Error subiendo archivo:", error)
-                updatedFiles[i].status = "error"
+                updatedFiles[0].status = "error"
             }
-            setFiles([...updatedFiles])
         }
+
+        setFiles([...updatedFiles])
 
         setIsProcessing(false)
     }
