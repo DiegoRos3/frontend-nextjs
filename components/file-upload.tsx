@@ -100,7 +100,7 @@ export function FileUpload() {
                         {isDragActive ? "Suelta tus archivos aquí" : "Arrastra tus archivos de datos"}
                     </p>
                     <p className="text-sm text-muted-foreground max-w-xs mx-auto">
-                        Soporta archivos CSV y xlsx para el análisis.
+                        Soporta archivos .csv y .xlsx para el análisis.
                     </p>
                 </div>
 
