@@ -6,6 +6,7 @@ import { Upload, X, FileText, CheckCircle2, Loader2, Send } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import procesarService from "@/services/procesar.service"
+import ErrorDialog from "./error-dialog"
 
 interface FileWithStatus {
     file: File
@@ -13,8 +14,10 @@ interface FileWithStatus {
 }
 
 export function FileUpload() {
-    const [files, setFiles] = useState<FileWithStatus[]>([])
-    const [isProcessing, setIsProcessing] = useState<boolean>(false)
+    const [files, setFiles] = useState<FileWithStatus[]>([]);
+    const [isProcessing, setIsProcessing] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [msgError, setMsgError] = useState<string>("");
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const newFiles = acceptedFiles.map((file) => ({
@@ -51,6 +54,8 @@ export function FileUpload() {
             } catch (error) {
                 console.error("Error subiendo archivo:", error)
                 updatedFiles[0].status = "error"
+                setMsgError("Informacion del error: " + error);
+                setIsOpen(true);
             }
         }
 
@@ -75,6 +80,7 @@ export function FileUpload() {
 
     return (
         <div className="w-full max-w-2xl mx-auto space-y-6">
+            <ErrorDialog open={isOpen} onOpenChange={setIsOpen} msgError={msgError}/>
             <div
                 {...getRootProps()}
                 className={cn(
