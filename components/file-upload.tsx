@@ -16,7 +16,7 @@ interface FileWithStatus {
 export function FileUpload() {
     const [files, setFiles] = useState<FileWithStatus[]>([]);
     const [isProcessing, setIsProcessing] = useState<boolean>(false);
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
     const [msgError, setMsgError] = useState<string>("");
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -55,7 +55,7 @@ export function FileUpload() {
                 console.error("Error subiendo archivo:", error)
                 updatedFiles[0].status = "error"
                 setMsgError("Informacion del error: " + error);
-                setIsOpen(true);
+                setIsDialogOpen(true);
             }
         }
 
@@ -80,7 +80,7 @@ export function FileUpload() {
 
     return (
         <div className="w-full max-w-2xl mx-auto space-y-6">
-            <ErrorDialog open={isOpen} onOpenChange={setIsOpen} msgError={msgError}/>
+            <ErrorDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} msgError={msgError}/>
             <div
                 {...getRootProps()}
                 className={cn(
