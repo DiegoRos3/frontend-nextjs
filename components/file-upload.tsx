@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react"
 import { useDropzone } from "react-dropzone"
-import { Upload, X, FileText, CheckCircle2, Loader2, Send } from "lucide-react"
+import { Upload, X, FileText, CheckCircle2, Loader2, Send, CircleAlert } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import procesarService from "@/services/procesar.service"
@@ -80,7 +80,7 @@ export function FileUpload() {
 
     return (
         <div className="w-full max-w-2xl mx-auto space-y-6">
-            <ErrorDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} msgError={msgError}/>
+            <ErrorDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} msgError={msgError} />
             <div
                 {...getRootProps()}
                 className={cn(
@@ -174,7 +174,7 @@ export function FileUpload() {
                                         <CheckCircle2 className="size-5 text-emerald-500" />
                                     )}
                                     {fileStatus.status === "error" && (
-                                        <X className="size-5 text-destructive" />
+                                        <CircleAlert className="size-5 text-destructive" />
                                     )}
                                     {!isProcessing && (
                                         <button
