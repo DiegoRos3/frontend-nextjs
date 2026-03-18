@@ -1,3 +1,5 @@
+'use client'
+
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
@@ -42,6 +44,7 @@ export interface AllDataState {
   importe_total: number
   ganancia_bruta: number
   kilos_vendidos: number
+  recomendacion: string
 }
 
 export interface DataState {
@@ -58,7 +61,8 @@ const initialState: DataState = {
         margen_por_linea: [],
         importe_total: 0,
         ganancia_bruta: 0,
-        kilos_vendidos: 0
+        kilos_vendidos: 0,
+        recomendacion: ""
     }
 }
 

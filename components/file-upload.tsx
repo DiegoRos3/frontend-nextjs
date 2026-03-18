@@ -20,7 +20,7 @@ export function FileUpload() {
     const [isProcessing, setIsProcessing] = useState<boolean>(false);
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
     const [msgError, setMsgError] = useState<string>("");
-    const data = useAppSelector((state) => state.dashboardData.data);
+    const dashboardData = useAppSelector((state) => state.dashboardData.data);
     const dispatch = useAppDispatch();
     
     const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -54,7 +54,7 @@ export function FileUpload() {
 
                 dispatch(storeData(data));
 
-                console.log("respuesta del servidor:", data)
+                console.log("respuesta del servidor:", dashboardData)
 
                 updatedFiles[0].status = "success"
             } catch (error) {

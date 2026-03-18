@@ -1,3 +1,5 @@
+'use client'
+
 import { configureStore } from '@reduxjs/toolkit'
 import { dataSlice } from './slices/dataSlice'
 

@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 
 type KpiCradProps = {
     nombreDato: string,
-    valor: string
+    valor: number
 }
 
 export default function KpiCard(datos: KpiCradProps){
