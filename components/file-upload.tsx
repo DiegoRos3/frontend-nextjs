@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import procesarService from "@/services/procesar.service"
 import ErrorDialog from "./error-dialog"
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
+import { storeData } from "@/app/store/slices/dataSlice"
 
 interface FileWithStatus {
     file: File
@@ -18,7 +20,9 @@ export function FileUpload() {
     const [isProcessing, setIsProcessing] = useState<boolean>(false);
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
     const [msgError, setMsgError] = useState<string>("");
-
+    const data = useAppSelector((state) => state.dashboardData.data);
+    const dispatch = useAppDispatch();
+    
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const newFiles = acceptedFiles.map((file) => ({
             file,
@@ -47,6 +51,8 @@ export function FileUpload() {
                 formData.append("file", updatedFiles[0].file)
 
                 const data = await procesarService(formData)
+
+                dispatch(storeData(data));
 
                 console.log("respuesta del servidor:", data)
 
