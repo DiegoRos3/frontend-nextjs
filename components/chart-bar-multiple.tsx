@@ -37,10 +37,10 @@ interface ChartBarMultipleProps {
 
 export function ChartBarMultiple({ data }: ChartBarMultipleProps) {
     return (
-        <Card size="default" className="mx-auto w-full max-w-sm">
+        <Card size="default" className="mx-auto w-full">
             <CardHeader>
-                <CardTitle>Importe y Margen</CardTitle>
-                <CardDescription>Por Cuatrimestre</CardDescription>
+                <CardTitle className="text-3xl font-bold">Importe y Margen</CardTitle>
+                <CardDescription className="text-2xl">Por Cuatrimestre</CardDescription>
             </CardHeader>
             <CardContent>
                 <ChartContainer config={chartConfig}>
