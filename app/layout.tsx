@@ -3,9 +3,10 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { cookies } from "next/headers";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider} from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Providers } from "./providers";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -46,6 +47,7 @@ export default async function RootLayout({
             <SidebarInset>
               <main>
                 {children}
+                <Toaster/>
               </main>
             </SidebarInset>
           </SidebarProvider>

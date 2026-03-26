@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { Upload, X, FileText, CheckCircle2, Loader2, Send, CircleAlert } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -9,6 +9,8 @@ import procesarService from "@/services/procesar.service"
 import ErrorDialog from "./error-dialog"
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
 import { storeData } from "@/app/store/slices/dataSlice"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
 
 interface FileWithStatus {
     file: File
@@ -20,8 +22,46 @@ export function FileUpload() {
     const [isProcessing, setIsProcessing] = useState<boolean>(false);
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
     const [msgError, setMsgError] = useState<string>("");
+    const [redirect, setRedirect] = useState<boolean>(false);
+    const [timer, setTimer] = useState<number>(5);
+    const router = useRouter();
     const dashboardData = useAppSelector((state) => state.dashboardData.data);
     const dispatch = useAppDispatch();
+
+    useEffect(() => {
+
+        if(!redirect) return;
+
+        toast.info(`Redirigiendo a graficas en: ${timer} segundos`, {
+            id: "redirect-toast",
+            position: "bottom-right",
+            duration: 5000
+        });
+
+        const interval = setInterval(() => {
+            setTimer((prev) => prev - 1);
+        }, 1000);
+
+        const timeout = setTimeout(() => {
+            clearInterval(interval);
+            router.push("/graficas");
+            toast.dismiss("redirect-toast");
+        }, 5000);
+
+        return () => {
+            clearInterval(interval);
+            clearTimeout(timeout);
+            toast.dismiss("redirect-toast")
+        };
+    }, [redirect]);
+
+    useEffect(() => {
+        if (!redirect) return;
+
+        toast.info(`Redirigiendo a graficas en: ${timer} segundos`, {
+            id: "redirect-toast",
+        });
+    }, [timer]);
     
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const newFiles = acceptedFiles.map((file) => ({
@@ -57,6 +97,7 @@ export function FileUpload() {
                 console.log("respuesta del servidor:", dashboardData)
 
                 updatedFiles[0].status = "success"
+                setRedirect(true);
             } catch (error) {
                 console.error("Error subiendo archivo:", error)
                 updatedFiles[0].status = "error"
