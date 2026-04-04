@@ -49,11 +49,11 @@ export function ChartBarHorizontal({data}: ChartBarMultipleProps) {
               left: 24,
             }}
           >
-            <XAxis type="number" dataKey="MARGEN_TOTAL" hide />
+            <XAxis type="number" dataKey="MARGEN_TOTAL" />
             <YAxis
               dataKey="nombre_sucursal"
               type="category"
-              width={160}
+              width={120}
               interval={0}
               tickLine={false}
               tickMargin={10}
