@@ -4,6 +4,7 @@ import { AppHeader } from "@/components/app-header";
 import KpiCard from "@/components/kpi-card";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { ChartBarMultiple } from "@/components/chart-bar-multiple";
+import { ChartBarHorizontal } from "@/components/chart-bar-horizontal";
 
 export default function Graficas() {
 
@@ -29,10 +30,11 @@ export default function Graficas() {
     return (
         <>
             <AppHeader title="Graficas" />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 p-6">
+            <div className="grid items-start grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 p-6">
                 <KpiCard nombreDato="Importe Total" valor={dashboardData.importe_total} />
                 <KpiCard nombreDato="Ganancia Bruta" valor={dashboardData.ganancia_bruta} />
                 <KpiCard nombreDato="Kilos Vendidos" valor={dashboardData.kilos_vendidos} />
+                <ChartBarHorizontal data={dashboardData.margen_por_sucursal}/>
                 <ChartBarMultiple data={dashboardData.importe_margen_cuatrimestre} />
             </div>
         </>
