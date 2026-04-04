@@ -1,6 +1,4 @@
 "use client"
-
-import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 import {
@@ -28,28 +26,28 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-interface ChartBarMultipleProps{
+interface ChartBarHorizontalProps{
     data: MargenPorSucursal[]
 }
 
-export function ChartBarHorizontal({data}: ChartBarMultipleProps) {
+export function ChartBarHorizontal({data}: ChartBarHorizontalProps) {
   return (
-    <Card size="default" className="col-span-3 w-full">
+    <Card size="default" className="w-full flex flex-col md:col-span-2 lg:col-span-2">
       <CardHeader>
         <CardTitle  className="text-3xl font-bold">Margen</CardTitle>
         <CardDescription className="text-2xl">por sucursal</CardDescription>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
+      <CardContent className="flex-1">
+        <ChartContainer config={chartConfig} className="h-full min-h-90 aspect-auto">
           <BarChart
             accessibilityLayer
             data={data}
             layout="vertical"
             margin={{
-              left: 24,
+              left: -15,
             }}
           >
-            <XAxis type="number" dataKey="MARGEN_TOTAL" />
+            <XAxis type="number" dataKey="MARGEN_TOTAL"/>
             <YAxis
               dataKey="nombre_sucursal"
               type="category"

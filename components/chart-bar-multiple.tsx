@@ -37,13 +37,13 @@ interface ChartBarMultipleProps {
 
 export function ChartBarMultiple({ data }: ChartBarMultipleProps) {
     return (
-        <Card size="default" className="mx-auto w-full">
+        <Card size="default" className="w-full flex flex-col md:col-span-2 lg:col-span-1">
             <CardHeader>
                 <CardTitle className="text-3xl font-bold">Importe y Margen</CardTitle>
                 <CardDescription className="text-2xl">Por Cuatrimestre</CardDescription>
             </CardHeader>
-            <CardContent>
-                <ChartContainer config={chartConfig}>
+            <CardContent className="flex-1">
+                <ChartContainer config={chartConfig} className="h-full min-h-90 aspect-auto">
                     <BarChart accessibilityLayer data={data}>
                         <CartesianGrid vertical={false} />
                         <XAxis

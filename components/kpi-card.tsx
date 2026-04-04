@@ -8,7 +8,7 @@ type KpiCradProps = {
 
 export default function KpiCard(datos: KpiCradProps){
     return (
-        <Card size="default" className="mx-auto w-full sm:grid-cols-1">
+        <Card size="default" className="mx-auto w-full sm:col-span-1 md:col-span-2 lg:col-span-1">
             <CardHeader className="flex justify-items-start gap-3">
                 <CardTitle className="text-3xl font-bold">{datos.nombreDato}</CardTitle>
                 <ChartNoAxesCombined size={25} className="bg-emerald-600/20 text-emerald-600 dark:bg-emerald-600/20 dark:text-emerald-600 rounded-md"/>
