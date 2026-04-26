@@ -6,6 +6,9 @@ import { useAppSelector } from "../store/hooks";
 import { ChartBarMultiple } from "@/components/chart-bar-multiple";
 import { ChartBarHorizontal } from "@/components/chart-bar-horizontal";
 import { ChartBarDefault } from "@/components/chart-bar-default";
+import { ChartPieSucursal } from "@/components/chart-pie-sucursal";
+import { ChartBarClientes } from "@/components/chart-bar-clientes";
+import { ChartBarVendedores } from "@/components/chart-bar-vendedores";
 
 export default function Graficas() {
 
@@ -35,8 +38,11 @@ export default function Graficas() {
                 <KpiCard nombreDato="Ganancia Bruta" valor={dashboardData.ganancia_bruta} />
                 <KpiCard nombreDato="Kilos Vendidos" valor={dashboardData.kilos_vendidos} />
                 <ChartBarMultiple data={dashboardData.importe_margen_cuatrimestre} />
-                <ChartBarHorizontal data={dashboardData.margen_por_sucursal}/>
+                <ChartBarHorizontal data={dashboardData.margen_por_sucursal} />
+                <ChartPieSucursal data={dashboardData.importe_por_sucursal} />
                 <ChartBarDefault data={dashboardData.margen_por_linea} />
+                <ChartBarClientes data={dashboardData.top_clientes_margen} />
+                <ChartBarVendedores data={dashboardData.top_vendedores_margen} />
             </div>
         </>
     )

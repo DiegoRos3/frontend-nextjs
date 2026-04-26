@@ -39,10 +39,10 @@ export function ChartBarDefault({ data }: ChartBarDefaultProps) {
   return (
     <Card size="default" className="w-full flex flex-col md:col-span-2 lg:col-span-2">
       <CardHeader>
-        <CardTitle>Bar Chart</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle className="text-3xl font-bold">Margen</CardTitle>
+        <CardDescription className="text-2xl">por Línea</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-1">
         <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={top5Data}>
             <CartesianGrid vertical={false} />
@@ -62,11 +62,8 @@ export function ChartBarDefault({ data }: ChartBarDefaultProps) {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 leading-none font-medium">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+        <div className="flex gap-2 leading-none font-medium text-muted-foreground">
+          Top 5 líneas que generan mayor margen
         </div>
       </CardFooter>
     </Card>
